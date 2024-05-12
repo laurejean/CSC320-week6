@@ -1,54 +1,52 @@
-
-import java.util.Scanner;
-
 public class Automobile {
-	
-	public static void main(String[] args) {
-		
-		String autoMake = "";
-		String autoModel = "";
-		String autoColor = "";
-		int autoYear = 0;
-		
-		RemoveVehicle(autoMake, autoModel, autoColor, autoYear);
-	}
-	
-	/**
-	 * @desc
-	 * @param Make
-	 * @param Model
-	 * @param Color
-	 * @param Year
-	 * @return
-	 */
-	public static void RemoveVehicle (String Make, String Model,String Color, int Year) {
-		Make = "USA";
-		Model = "Toyota";
-		Color = "Black";
-		Year = 2024;
-		
-		String inputMake = "";
-		String inputModel = "";
-		String inputColor = "";
-		int inputYear = 0;
-		boolean check1 = false;
-		
-		Scanner scnr = new Scanner(System.in);
-		System.out.print("Please enter the vehicule's make: ");
-		inputMake = scnr.next();
-		System.out.print("Please enter the vehicule's model: ");
-		inputModel = scnr.next();
-		System.out.print("Please enter the vehicule's color: ");
-		inputColor = scnr.next();
-		System.out.print("Please enter the vehicule's year: ");
-		inputYear = scnr.nextInt();
-		
-		 if(inputMake.equalsIgnoreCase("USA") && inputModel.equalsIgnoreCase("Toyota") && inputColor.equalsIgnoreCase("Black") && inputYear == 2024) {
-			 check1 = true;
-			 System.out.print("It's a match! Therefore, this vehicule information will be removed form our system!");	
-		 }else {
-			 System.out.print("It's not a match.");
-		 }
-	} 
+    private String make;
+    private String model;
+    private String color;
+    private int year;
+
+    // Constructor
+    public Automobile(String make, String model, String color, int year) {
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.year = year;
+    }
+
+    // Method to add vehicle information
+    public void addVehicle(String newMake, String newModel, String newColor, int newYear) {
+        make = newMake;
+        model = newModel;
+        color = newColor;
+        year = newYear;
+        
+    }
+
+    // Method to update vehicle information
+    public String updateVehicle(String newMake, String newModel, String newColor, int newYear) {
+        if (!newMake.equals(make) || !newModel.equals(model) || !newColor.equals(color) || newYear != year) {
+            make = newMake;
+            model = newModel;
+            color = newColor;
+            year = newYear;
+            return "Vehicle information updated successfully.";
+        } else {
+            return "No changes detected: Vehicle information remains the same.";
+        }
+    }
+
+    // Method to remove vehicle information
+    public String removeVehicle(String inputMake, String inputModel, String inputColor, int inputYear) {
+        if (inputMake.equals(make) && inputModel.equals(model) && inputColor.equals(color) && inputYear == year) {
+            // Match found, remove vehicle
+            make = null;
+            model = null;
+            color = null;
+            year = 0;
+            return "Vehicle information removed successfully.";
+        } else {
+            return "Mismatch: Vehicle information not removed.";
+        }
+    }
 
 }
+
